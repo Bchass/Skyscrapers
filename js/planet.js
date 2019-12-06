@@ -5,12 +5,12 @@ var scene,
     controls,
     group;
 
-var radius = 35;
+var radius = 50;
 
 // setup of planet
 function planet(r) {
     var groundMaterial = new THREE.MeshLambertMaterial({
-        color: 0x634b35
+        color: 0x7d715b
     });
     var planetGeometry = new THREE.SphereGeometry(r, 100, 100);
     var planet = new THREE.Mesh(planetGeometry, groundMaterial);
@@ -32,8 +32,8 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     // lights for the planet
-    var light1 = new THREE.DirectionalLight(0xDDEED3, 1);
-    var light2 = new THREE.AmbientLight(0x7D7D7D);
+    var light1 = new THREE.DirectionalLight(0x403f3e);
+    var light2 = new THREE.AmbientLight(0xadbcff);
     light1.position.set(0, 0, 1);
 
     scene.add(light1);
