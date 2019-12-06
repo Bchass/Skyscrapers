@@ -9,3 +9,6 @@ body {
     width: auto;
     height: auto;
   }
+  html{
+      background-color: black;
+  }
