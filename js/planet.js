@@ -24,7 +24,7 @@ function planet(r) {
     scene.add(planet);
 }
 // setup of buildings
-function building(xRot, yRot, zRot) {
+function building(x, y, z) {
     var structure = new THREE.Mesh(cubeGeometry, buildingMaterial);
     structure.position.set(0, radius + 0.75, 0);
     structure.scale.set(0.3, 1.5, 0.3);
@@ -34,9 +34,9 @@ function building(xRot, yRot, zRot) {
     building.add(structure);
 
 
-    building.rotation.x = xRot;
-    building.rotation.y = yRot;
-    building.rotation.z = zRot;
+    building.rotation.x = x;
+    building.rotation.y = y;
+    building.rotation.z = z;
 
     return building;
 }
@@ -57,6 +57,7 @@ function init() {
     scene.add(light2);
     scene.add(planet(radius));
 
+    // How many buildings to generate
     for (var i = 0; i < 3000; i++) {
         scene.add(building(Math.PI * Math.random() * 2, Math.PI * Math.random() * 2, Math.PI * Math.random() * 2));
     }
