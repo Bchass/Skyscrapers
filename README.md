@@ -1,6 +1,6 @@
 # Skyscrapers
 
-A project for class explaining a story from childhood. 
+A project for class depecting a story from childhood through abstract concepts. 
 
 -------
 
