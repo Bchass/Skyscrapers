@@ -3,33 +3,50 @@ var scene,
     camera,
     renderer,
     controls,
+    geometry,
     group;
 
-var radius = 50;
+// geometry of buildings
+var buildingMaterial = new THREE.MeshLambertMaterial({
+    color: 0xe3dca1
+});
+var cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 
+var radius = 40;
 // setup of planet
 function planet(r) {
     var groundMaterial = new THREE.MeshLambertMaterial({
         color: 0x7d715b
     });
-    var planetGeometry = new THREE.SphereGeometry(r, 100, 100);
+    var planetGeometry = new THREE.SphereGeometry(radius, 100, 100);
     var planet = new THREE.Mesh(planetGeometry, groundMaterial);
     planet.position.set(0, 0, 0);
     scene.add(planet);
 }
+// setup of buildings
+function building(xRot, yRot, zRot) {
+    var structure = new THREE.Mesh(cubeGeometry, buildingMaterial);
+    structure.position.set(0, radius + 0.75, 0);
+    structure.scale.set(0.3, 1.5, 0.3);
+
+
+    var building = new THREE.Group();
+    building.add(structure);
+
+
+    building.rotation.x = xRot;
+    building.rotation.y = yRot;
+    building.rotation.z = zRot;
+
+    return building;
+}
 
 
 function init() {
-
     // setup scene
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 80;
-
-    // render planet
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
 
     // lights for the planet
     var light1 = new THREE.DirectionalLight(0x403f3e);
@@ -39,6 +56,13 @@ function init() {
     scene.add(light1);
     scene.add(light2);
     scene.add(planet(radius));
+
+    for (var i = 0; i < 3000; i++) {
+        scene.add(building(Math.PI * Math.random() * 2, Math.PI * Math.random() * 2, Math.PI * Math.random() * 2));
+    }
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
     // orbit controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
