@@ -9,37 +9,37 @@ var scene,
 //var currentBuildings = 0;
 
 // geometry of buildings
-var buildingMaterial = new THREE.MeshLambertMaterial({
+const buildingMaterial = new THREE.MeshLambertMaterial({
     color: 0xff0000
 });
-var cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-var LightMaterial = new THREE.MeshLambertMaterial({
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+const LightMaterial = new THREE.MeshLambertMaterial({
     color: 0xffffff
 });
 
-var radius = 50;
+const radius = 50;
 // setup of planet
 function planet(r) {
     var groundMaterial = new THREE.MeshLambertMaterial({
         color: 0x545050
     });
-    var planetGeometry = new THREE.SphereGeometry(radius, 100, 100);
-    var planet = new THREE.Mesh(planetGeometry, groundMaterial);
+    const planetGeometry = new THREE.SphereGeometry(r, 100, 100);
+    const planet = new THREE.Mesh(planetGeometry, groundMaterial);
     planet.position.set(1, 0, 0);
     scene.add(planet);
 }
 // setup of buildings
 function building(x, y, z) {
-    var structure = new THREE.Mesh(cubeGeometry, buildingMaterial);
+    const structure = new THREE.Mesh(cubeGeometry, buildingMaterial);
     structure.position.set(0, radius + 0, 0);
     structure.scale.set(0.3, 1.5, 0.3);
 
-    var Light = new THREE.Mesh(cubeGeometry, LightMaterial);
+    const Light = new THREE.Mesh(cubeGeometry, LightMaterial);
     Light.position.set(0, radius + 1, 0);
     Light.scale.set(0.5, 0.1, 1);
 
 
-    var building = new THREE.Group();
+    const building = new THREE.Group();
     building.add(structure);
     building.add(Light);
 
@@ -85,8 +85,8 @@ function init() {
     camera.position.z = 80;
 
     // lights for the planet
-    var light1 = new THREE.DirectionalLight(0x6e6e6e);
-    var light2 = new THREE.AmbientLight(0xb3b3b3);
+    const light1 = new THREE.DirectionalLight(0x6e6e6e);
+    const light2 = new THREE.AmbientLight(0xb3b3b3);
     light1.position.set(0, 0, 3);
     light2.position.set(0, 0, 3);
 
