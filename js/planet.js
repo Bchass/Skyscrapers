@@ -10,28 +10,29 @@ var scene,
 
 // geometry of buildings
 const buildingMaterial = new THREE.MeshLambertMaterial({
-    color: 0xff0000
+    color: 0xe61919
 });
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 const LightMaterial = new THREE.MeshLambertMaterial({
-    color: 0xffffff
+    color: 0xffea00
 });
 
 const radius = 50;
 // setup of planet
 function planet(r) {
-    var groundMaterial = new THREE.MeshLambertMaterial({
-        color: 0x545050
+    const groundMaterial = new THREE.MeshLambertMaterial({
+        color: 0x00c3ff
     });
     const planetGeometry = new THREE.SphereGeometry(r, 100, 100);
     const planet = new THREE.Mesh(planetGeometry, groundMaterial);
-    planet.position.set(1, 0, 0);
+    planet.position.set(0, 0, 1);
     scene.add(planet);
 }
+
 // setup of buildings
 function building(x, y, z) {
     const structure = new THREE.Mesh(cubeGeometry, buildingMaterial);
-    structure.position.set(0, radius + 0, 0);
+    structure.position.set(0, radius + 0.1, 0);
     structure.scale.set(0.3, 1.5, 0.3);
 
     const Light = new THREE.Mesh(cubeGeometry, LightMaterial);
@@ -87,11 +88,11 @@ function init() {
     // lights for the planet
     const light1 = new THREE.DirectionalLight(0x6e6e6e);
     const light2 = new THREE.AmbientLight(0xb3b3b3);
-    light1.position.set(0, 0, 3);
+    light1.position.set(5, 0, 5);
     light2.position.set(0, 0, 3);
 
     scene.add(light1);
-    scene.add(light2);
+    //scene.add(light2);
     scene.add(planet(radius));
 
     // How many buildings to generate between [0,2π]
